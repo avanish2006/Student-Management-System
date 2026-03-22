@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Student-management system</title>
+</head>
+<body>
+<h2>Student Management System</h2>
+<table id="studentTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Course</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="studentBody">
+    </tbody>
+</table>
+
+<script>
+    let students = [
+        { name: "Avanish", age: 15, course: "Computer Science" },
+        { name: "Devi", age: 10, course: "Mathematics" },
+        { name: "Sandeep", age: 2, course: "Physics" }
+    ];
+
+    function displayStudents() {
+        let tableBody = document.getElementById("studentBody");
+        tableBody.innerHTML = ""; 
+        
+        for (let i = 0; i < students.length; i++) {
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${students[i].name}</td>
+                <td>${students[i].age}</td>
+                <td>${students[i].course}</td>
+                <td><button onclick="removeStudent(${i})">Remove</button></td>
+            `;
+            tableBody.appendChild(row);
+        }
+    }
+
+    function removeStudent(index) {
+        students.splice(index, 1);
+        displayStudents();
+    }
+
+    displayStudents(); 
+</script>
+</body>
+</html>
